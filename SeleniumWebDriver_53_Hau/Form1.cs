@@ -77,6 +77,8 @@ namespace SeleniumWebDriver_53_Hau
 
         private void backForward_53_Hau_Click_1(object sender, EventArgs e)
         {
+            ChromeDriverService chrome_53_Hau = ChromeDriverService.CreateDefaultService();
+            chrome_53_Hau.HideCommandPromptWindow = true;
             // Điều hướng trang
             IWebDriver driver_53_Hau = new ChromeDriver();
             driver_53_Hau.Navigate().GoToUrl("https://google.com/");
@@ -88,6 +90,46 @@ namespace SeleniumWebDriver_53_Hau
             driver_53_Hau.Navigate().Forward();
             Thread.Sleep(1000);
             driver_53_Hau.Navigate().Refresh();
+        }
+
+        private void btnOpenSearch_53_Hau_Click(object sender, EventArgs e)
+        {
+            // Bài 4: Bắt thanh tìm kiếm và tự động điền từ khoá vào đó
+            // Điều hướng trang đến trang google.com
+            IWebDriver driver_53_Hau = new ChromeDriver();
+            driver_53_Hau.Navigate().GoToUrl("https://google.com/");
+            // Bắt element
+            IWebElement element_53_Hau = driver_53_Hau.FindElement(By.Name("q"));
+            element_53_Hau.SendKeys(txtKey_53_Hau.Text);
+        }
+
+        private void btnLoginFB_53_Hau_Click(object sender, EventArgs e)
+        {
+            // Bài 5: Bắt element thanh nhập email/SĐT và mật khẩu để đăng nhập FB
+            // Điều hướng mở trang facebook.com
+            IWebDriver driver_53_Hau = new ChromeDriver();
+            driver_53_Hau.Navigate().GoToUrl("https://facebook.com/");
+            // Bắt 2 thanh nhập liệu
+            // Bắt ô email
+            IWebElement email_53_Hau = driver_53_Hau.FindElement(By.Name("email"));
+            email_53_Hau.SendKeys("2251050029hau@ou.edu.vn");
+            // Bắt ô mật khẩu
+            // Note: thông tin email và pass là sai!
+            IWebElement pass_53_Hau = driver_53_Hau.FindElement(By.Name("pass"));
+            pass_53_Hau.SendKeys("ABC123");
+            Thread.Sleep(2000);
+            //Bắt button đăng nhập
+            IWebElement login_53_Hau = driver_53_Hau.FindElement(By.Name("login"));
+            login_53_Hau.Click();
+        }
+
+        private void btnForgotPass_53_Hau_Click(object sender, EventArgs e)
+        {
+            // Bài 6: Bắt element LinkText quên mật khẩu
+            // Điều hướng mở trang facebook.com
+            IWebDriver driver_53_Hau = new ChromeDriver();
+            driver_53_Hau.Navigate().GoToUrl("https://facebook.com/");
+            driver_53_Hau.FindElement(By.LinkText("Forgotten password?")).Click();
         }
     }
 }
